@@ -64,16 +64,22 @@
 							    </div>
 							    <div class="col-4">
 							    	<div class="d-grid gap-2">
-										<button class="btn btn-outline-success btn-lg" type="submit" name="marcar" value=1><% out.println( request.getAttribute("1") ); %></button>
-				  						<button class="btn btn-outline-success btn-lg" type="submit" name="marcar" value=4><% out.println( request.getAttribute("4") ); %></button>
-				  						<button class="btn btn-outline-success btn-lg" type="submit" name="marcar" value=7><% out.println( request.getAttribute("7") ); %></button>
+										<button <% if( request.getAttribute("1").equals("O") | 
+												request.getAttribute("1").equals("X") ){ %> disabled <%} %>  class="btn btn-outline-success btn-lg" type="submit" name="marcar" value=1><% out.println( request.getAttribute("1") ); %></button>
+				  						<button <% if( request.getAttribute("4").equals("O") | 
+												request.getAttribute("4").equals("X") ){ %> disabled <%} %>  class="btn btn-outline-success btn-lg" type="submit" name="marcar" value=4><% out.println( request.getAttribute("4") ); %></button>
+				  						<button <% if( request.getAttribute("7").equals("O") | 
+												request.getAttribute("7").equals("X") ){ %> disabled <%} %>  class="btn btn-outline-success btn-lg" type="submit" name="marcar" value=7><% out.println( request.getAttribute("7") ); %></button>
 									</div>
 							    </div>
 							    <div class="col-4">
 							    	<div class="d-grid gap-2">
-							    		<button class="btn btn-outline-success btn-lg" type="submit" name="marcar" value=2><% out.println( request.getAttribute("2") ); %></button>
-										<button class="btn btn-outline-success btn-lg" type="submit" name="marcar" value=5><% out.println( request.getAttribute("5") ); %></button>
-				  						<button class="btn btn-outline-success btn-lg" type="submit" name="marcar" value=8><% out.println( request.getAttribute("8") ); %></button>  						
+							    		<button <% if( request.getAttribute("2").equals("O") | 
+												request.getAttribute("2").equals("X") ){ %> disabled <%} %>  class="btn btn-outline-success btn-lg" type="submit" name="marcar" value=2><% out.println( request.getAttribute("2") ); %></button>
+										<button <% if( request.getAttribute("5").equals("O") | 
+												request.getAttribute("5").equals("X") ){ %> disabled <%} %>  class="btn btn-outline-success btn-lg" type="submit" name="marcar" value=5><% out.println( request.getAttribute("5") ); %></button>
+				  						<button <% if( request.getAttribute("8").equals("O") | 
+												request.getAttribute("8").equals("X") ){ %> disabled <%} %>  class="btn btn-outline-success btn-lg" type="submit" name="marcar" value=8><% out.println( request.getAttribute("8") ); %></button>  						
 									</div>
 							    </div>
 					    	</div>
