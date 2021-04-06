@@ -31,16 +31,10 @@
 						<p class="h5">É a vez do <% out.println( request.getAttribute("turno") ); %></p>
 					</div>
 					<% } %>
-					
-					<% if ( request.getAttribute("winner") != null ) { %>
-						<div class="row ">
-							<p class="h3"><br>Jogador <% out.println( request.getAttribute("turno") ); %> venceu!</p>
-						</div>
-					<% } %>	
 				</div>
 				<div class="row justify-content-md-center" style="padding:2.8rem;">
 					<form method="get" action="<%= request.getContextPath()%>/jogar">
-						<button class="btn btn-primary btn-lg" type="submit" name="start" value="yes">Iniciar</button>
+						<button class="btn btn-success btn-lg" type="submit" name="start" value="yes">Iniciar</button>
 				</div>
 			</div>
 			
@@ -85,6 +79,17 @@
 					    	</div>
 					    </form>
 				    <% } %>
+					    <% if ( request.getAttribute("draw") != null & request.getAttribute("winner") == null) { %>
+					    <div class="col-6 offset-md-3">
+					    	<p class="h4 text-warning bg-dark">Deu velha! Ha ha ha!</p>
+					    </div>
+				    	<% } %>
+				    	
+				    	<% if ( request.getAttribute("winner") != null ) { %>
+						<div class="col-6 offset-md-3">
+							<p class="h4 text-success">Jogador <% out.println( request.getAttribute("turno") ); %> venceu!</p>
+						</div>
+						<% } %>	
 				    </div>
 				</div>
 			</div>
