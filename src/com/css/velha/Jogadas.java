@@ -27,9 +27,6 @@ public class Jogadas extends HttpServlet {
 		}
     	
     	this.turno = "X";
-    	
-    	
-    	
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -62,13 +59,16 @@ public class Jogadas extends HttpServlet {
 			}
 		}
 		
+		String start = request.getParameter("start");
+		if ( start != null ) {
+			for (int i = 0; i < 9; i++) {
+				this.posicoes.set(i, "-");
+			}
+		}
+		
 		//troca o turno e atualiza o atributo a ser devolvido à página 
-		
 		request.setAttribute("turno", turno);
-		
 		request.getRequestDispatcher("index.jsp").forward(request, response);
-		//response.getWriter().append("Parameters: ").append(request.getParameterMap().keySet().toString());
-		//response.getWriter().append("Parameter Names: ").append(request.getContextPath());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

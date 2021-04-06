@@ -33,14 +33,14 @@
 					<% } %>
 					
 					<% if ( request.getAttribute("winner") != null ) { %>
-						<div class="col">
+						<div class="row ">
 							<p class="h3"><br>Jogador <% out.println( request.getAttribute("turno") ); %> venceu!</p>
 						</div>
 					<% } %>	
 				</div>
 				<div class="row justify-content-md-center" style="padding:2.8rem;">
 					<form method="get" action="<%= request.getContextPath()%>/jogar">
-						<button class="btn btn-primary btn-lg" type="submit" value="init">Iniciar</button>
+						<button class="btn btn-primary btn-lg" type="submit" name="start" value="yes">Iniciar</button>
 				</div>
 			</div>
 			
@@ -54,9 +54,12 @@
 							<div class="row">
 								<div class="col-4">
 							    	<div class="d-grid gap-2">
-										<button class="btn btn-outline-success btn-lg" type="submit" name="marcar" value=0><% out.println( request.getAttribute("0") ); %></button>
-				  						<button class="btn btn-outline-success btn-lg" type="submit" name="marcar" value=3><% out.println( request.getAttribute("3") ); %></button>
-				  						<button class="btn btn-outline-success btn-lg" type="submit" name="marcar" value=6><% out.println( request.getAttribute("6") ); %></button>
+										<button <% if( request.getAttribute("0").equals("O") | 
+												request.getAttribute("0").equals("X") ){ %> disabled <%} %> class="btn btn-outline-success btn-lg" type="submit" name="marcar" value=0><% out.println( request.getAttribute("0") ); %></button>
+				  						<button <% if( request.getAttribute("3").equals("O") | 
+												request.getAttribute("3").equals("X") ){ %> disabled <%} %> class="btn btn-outline-success btn-lg" type="submit" name="marcar" value=3><% out.println( request.getAttribute("3") ); %></button>
+				  						<button <% if( request.getAttribute("6").equals("O") | 
+												request.getAttribute("6").equals("X") ){ %> disabled <%} %> class="btn btn-outline-success btn-lg" type="submit" name="marcar" value=6><% out.println( request.getAttribute("6") ); %></button>
 									</div>
 							    </div>
 							    <div class="col-4">
