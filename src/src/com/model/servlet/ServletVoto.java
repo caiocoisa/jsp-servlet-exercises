@@ -21,11 +21,13 @@ public class ServletVoto extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("Served at: ").append(request.getAttribute("etapa").toString());
 	}
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+    	request.setAttribute("etapa", "prefeito");
+    	request.getRequestDispatcher("index.jsp").forward(request, response);
 		doGet(request, response);
 	}
 

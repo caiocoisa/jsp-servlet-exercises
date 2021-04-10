@@ -42,3 +42,5 @@ hs_err_pid*
 .classpath
 
 .settings
+
+src/src/com/img/

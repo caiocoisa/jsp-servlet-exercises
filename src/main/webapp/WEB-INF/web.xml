@@ -9,9 +9,28 @@
   	<display-name>ServletVoto</display-name>
   	<description></description>
   	<servlet-class>src.com.model.servlet.ServletVoto</servlet-class>
+  	<init-param>
+  	  <param-name>etapa</param-name>
+  	  <param-value>vereador</param-value>
+  	</init-param>
+  </servlet>
+  <servlet>
+  	<servlet-name>API</servlet-name>
+  	<display-name>API</display-name>
+  	<description></description>
+  	<servlet-class>src.com.model.servlet.API</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>ServletVoto</servlet-name>
   	<url-pattern>/ServletVoto</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>API</servlet-name>
+  	<url-pattern>/API</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>telavoto.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
 </web-app>
