@@ -120,4 +120,31 @@ public class Urna {
 	public String getPartido(String number) {
 		return eleicao.getPartidoByNum(number);
 	}
+	
+	public String getVotosByNumero(String number) {
+		if ( validarPrefeito(number) ) {
+			return votosPrefeito.get(number).toString();
+		}else if ( validarVereador(number) ) {
+			return votosVereador.get(number).toString();
+		}
+		return null;
+	}
+	
+	public String getVotosByPartido(String number) {
+		int votos = 0;
+		number = number.substring(0, 2);
+		if ( validarPrefeito(number) ) {
+			votos = votos + votosPrefeito.get(number).intValue();
+		}
+		if ( validarPartido(number) ) {
+			for (Candidato vereador:eleicao.getCandidatosVereador() ) {
+				if (vereador.getNumero().substring(0, 2).equals(number)) {
+					votos = votos + votosVereador.get(vereador.getNumero()).intValue();
+				}
+			}
+		}
+			
+		return String.valueOf(votos);
+	}
+
 }
