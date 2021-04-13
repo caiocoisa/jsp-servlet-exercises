@@ -110,14 +110,14 @@ public class Urna {
 		return null;
 	}
 	
-	public void getVotosByPartido(String numero) {
-		
+	public boolean validarPartido(String number) {
+		if ( eleicao.getPartidoByNum(number).equals("") ) {
+			return false;
+		} else {
+			return true;
+		}
 	}
-	public void getVotosByCandidato() {
-		
+	public String getPartido(String number) {
+		return eleicao.getPartidoByNum(number);
 	}
-	public void getVotosBranco() {
-		
-	}
-
 }

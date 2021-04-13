@@ -68,4 +68,13 @@ public class EleicaoDB {
 		}
 		return null;
 	}
+	
+	public String getPartidoByNum( String number ) {
+		for (Vereador vereador : candidatosVereador) {
+			if ( vereador.getNumero().substring(0, 2).equals(number) ) {
+				return vereador.getPartido();
+			}
+		}
+		return "";
+	}
 }

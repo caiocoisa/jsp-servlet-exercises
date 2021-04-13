@@ -1,3 +1,5 @@
+<%@page import="src.com.model.servlet.ServletVoto" %>
+<%@page import="src.com.model.controller.Urna" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,10 +19,10 @@
 	
 		<div class="row border border-light border-2">
 			<div class="col-sm-6 p-5 bg-light border border-5">
-			<% if ( request.getAttribute("etapa") == null ) { %>
-				<p class="h1 text-center">Prefeito</p>
-			<% }else{ %>
+			<% if ( ServletVoto.etapa == 1 ) { %>
 				<p class="h1 text-center">Vereador</p>
+			<% }else{ %>
+				<p class="h1 text-center">Prefeito</p>
 			<% } %>
 				<div class="row">
 			<!-- 		<div class="col-md-4 order-md-2 py-2">
@@ -31,21 +33,28 @@
 	 				 		</div>
 						</div>
 					</div>
+					
+					<li class="list-group-item display-6 list-group-item-info">1</li>
 				 -->	
 					<div class="col-md-8 order-md-1 py-4 my-2">	
-						<ul class="list-group list-group-horizontal-md">
-						  <li class="list-group-item display-6">9</li>
-						  <li class="list-group-item display-6 list-group-item-info">1</li>
-						  <li class="list-group-item display-6 list-group-item-light">_</li>
-						  <li class="list-group-item display-6 list-group-item-light">_</li>
-						  <li class="list-group-item display-6 list-group-item-light">_</li>
-						</ul>
 						
+						
+					
+						<ul class="list-group list-group-horizontal-md">
+						  <li class="list-group-item display-6 <%if(ServletVoto.getDigito(1)!="_"){ %>list-group-item-dark<%} %>"><%= ServletVoto.getDigito(1) %></li>
+						  <li class="list-group-item display-6 <%if(ServletVoto.getDigito(2)!="_"){ %>list-group-item-dark<%} %>"><%= ServletVoto.getDigito(2) %></li>
+					  <% if ( ServletVoto.etapa == 1 ) { %>
+						  <li class="list-group-item display-6 <%if(ServletVoto.getDigito(3)!="_"){ %>list-group-item-dark<%} %>"><%= ServletVoto.getDigito(3) %></li>
+						  <li class="list-group-item display-6 <%if(ServletVoto.getDigito(4)!="_"){ %>list-group-item-dark<%} %>"><%= ServletVoto.getDigito(4) %></li>
+						  <li class="list-group-item display-6 <%if(ServletVoto.getDigito(5)!="_"){ %>list-group-item-dark<%} %>"><%= ServletVoto.getDigito(5) %></li>
+					  <% }%>
+						</ul> 
+
 						<div class="row my-3 ">
-							<p class="h3">Quintino Bocaiúva</p>
+							<p class="h3">Nome: <%= ServletVoto.nomeEmVotacao %></p>
 						</div>
 						<div class="row my-2 ">
-							<p class="h5">Partido Bootstrap</p>
+							<p class="h5">Legenda: <%= ServletVoto.partidoEmVotacao %></p>
 						</div>
 					</div>
 					
@@ -53,32 +62,40 @@
 			</div>
 
 			<div class="col-sm-6 p-4 bg-secondary-gradient" style="background-color:#019ddf;">
-				<div class="row">
+				<form class="row" method="post" action="<%= request.getContextPath() %>/votar" >
 					<div class="btn-group mb-3" role="group">
-					  <input type="submit" name="number" value="1" class="btn btn-outline-light btn-lg">
-					  <input type="submit" value="2" class="btn btn-outline-light btn-lg">
-					  <input type="submit" value="3" class="btn btn-outline-light btn-lg">
+					  <input type="submit" name="btn-1" value="1" class="btn btn-outline-light btn-lg">
+					  <input type="submit" name="btn-2" value="2" class="btn btn-outline-light btn-lg">
+					  <input type="submit" name="btn-3" value="3" class="btn btn-outline-light btn-lg">
 					</div>
 					<div class="btn-group mb-3" role="group">
-					  <input type="submit" value="4" class="btn btn-outline-light btn-lg">
-					  <input type="submit" value="5" class="btn btn-outline-light btn-lg">
-					  <input type="submit" value="6" class="btn btn-outline-light btn-lg">
+					  <input type="submit" name="btn-4" value="4" class="btn btn-outline-light btn-lg">
+					  <input type="submit" name="btn-5" value="5" class="btn btn-outline-light btn-lg">
+					  <input type="submit" name="btn-6" value="6" class="btn btn-outline-light btn-lg">
 					</div>
 					<div class="btn-group mb-3" role="group">
-					  <input type="submit" value="7" class="btn btn-outline-light btn-lg">
-					  <input type="submit" value="8" class="btn btn-outline-light btn-lg">
-					  <input type="submit" value="9" class="btn btn-outline-light btn-lg">
+					  <input type="submit" name="btn-7" value="7" class="btn btn-outline-light btn-lg">
+					  <input type="submit" name="btn-8" value="8" class="btn btn-outline-light btn-lg">
+					  <input type="submit" name="btn-9" value="9" class="btn btn-outline-light btn-lg">
 					</div>
 					<div class="d-grid gap-2 col-4 mb-3 mx-auto">
-  					  <input type="submit" value="0" class="btn btn-outline-light btn-lg">
+  					  <input type="submit" name="btn-0" value="0" class="btn btn-outline-light btn-lg">
 					</div>
 					<div class="btn-group mb-1" role="group">
-					  <button type="button" class="btn btn-light border btn-lg">BRANCO</button>
-					  <button type="button" class="btn btn-outline btn-lg" style="background-color:#d45035">CORRIGE</button>
-					  <button type="button" class="btn btn-success btn-lg">CONFIRMA</button>
+					  <button type="submit" name="branco" value="branco" class="btn btn-light border btn-lg">BRANCO</button>
+					  <button type="submit" name="corrige" value="corrige" class="btn btn-outline btn-lg" style="background-color:#d45035">CORRIGE</button>
+					  <button type="submit" name="confirmar" value="confirma" class="btn btn-success btn-lg" <% if(request.getAttribute("confirma") == null) {%>disabled<%} %>>CONFIRMA</button>
 					</div>
-				</div>
+				</form>
 			</div>
+		</div>
+		<div class="row">
+			<div class="col-11"></div>
+			 <% if ( ServletVoto.etapa == 1 ) { %>
+			<form class="col-1 text-center " method="post" action="boletim.jsp" >
+				<input class="btn btn-outline-light mt-2 rounded-circle" value="" type="submit">
+			</form>
+			<%} %>
 		</div>
 	</div>
     <!-- Optional JavaScript; choose one of the two! -->
